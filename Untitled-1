@@ -1,0 +1,323 @@
+// salery load
+$(document).ready(function () 
+{
+  $("#daterange").on("change", function(){ 
+    event.preventDefault();
+    emp_sal_lod();
+    });
+
+function emp_sal_lod(){
+
+var table = "table";
+	
+$.ajax({
+type : "POST",
+url : "php/emp.php",
+data :  {load_table:table},
+cache : false,
+success:function(response) 
+{
+  if(response==0)
+  {
+    $('#msg').html("<br> <big>Problem During Loading Details</big>"); 
+  }
+else
+  {
+    $('#salery').html(response); 
+  }
+}
+});
+return false;
+}
+});
+// salery load
+	alert("1");
+    function check(view)
+    {
+  		var checkbox = document.getElementById(view);
+  		if (checkbox.checked != false)
+  		{
+    		alert(view);
+			document.getElementsByName(view).disabled = false;
+  		}
+		if (checkbox.checked != true)
+  		{
+			document.getElementsByName(view);
+  		}
+	}
+
+<div class="form-row">
+                            <div class="form-group col-md-6">
+                                <button type="button" class="btn btn-primary">Generate Salery Slip</button>
+                                <button type="reset" class="btn btn-primary">Clear</button>
+ 			                </div>
+                       </div>
+					   
+					   
+					   
+while($row = mysqli_fetch_array($result))
+{
+ echo "<tr>";
+ echo "<td>"."<input id =".$row['empid']." type = checkbox onclick=check(this.id)>"."</td>";
+ echo "<td>".$row['empid']."</td>";
+ echo "<td>".$row['fname']." ".$row['lname']."</td>";
+ echo "<td>".$row['salery']."</td>";
+ echo "<td>"."<input name =".$row['empid']." type = textbox size = 3px disabled = disabled>"."</td>";
+ echo "<td>"."<input name =".$row['empid']." type = textbox size = 3px>"."</td>";
+ echo "<td>"."<input name =".$row['empid']." type = textbox size = 3px>"."</td>";
+ echo "<td>"."<input name =".$row['empid']." type = textbox size = 3px>"."</td>";
+ echo "<td> </td>";
+ echo "</tr>";
+}
+
+ if(response==0)
+  {
+	$("#msg1").html(response);
+	$("#msg1").html("<big>Problem During Creating Invoice</big>").show().fadeOut( 2000 ); 
+  }
+else
+  {
+     $('#msg1').html("<big>Invoice Created Successfully</big>").show().fadeOut( 2000 );
+	 resetForm();
+  }
+  
+   if(response==0)
+  {
+	$("#result").html("<big><font color=#FF0000>Problem During Updating Invoice</font></big>").show().fadeOut( 5000 ); 
+  }
+  else
+  {
+     $('#result').html("<big><font color=#00ff00>Invoice Updated Successfully</font></big>").show().fadeOut( 5000 );
+  }
+  
+  
+
+
+
+
+
+
+
+
+
+<div class="col-12 col-lg-6 col-xl-8 d-flex">
+							<div class="card flex-fill">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Invoice Status</h5>
+								</div>
+								<table id="datatables-dashboard-products" class="table table-striped my-0">
+									<thead>
+										<tr>
+											<th>InvId</th>
+											<th class="d-none d-xl-table-cell">Compney Name</th>
+											<th class="d-none d-xl-table-cell">Name</th>
+											<th class="d-none d-xl-table-cell">Date</th>
+											<th class="d-none d-xl-table-cell">Mobile</th>
+											<th>Total Amount</th>
+											<th>Balance</th>
+										</tr>
+									</thead>
+									<tbody id="bill_status">
+																		
+									</tbody>
+								</table>
+							</div>
+							<script>
+								document.addEventListener("DOMContentLoaded", function(event) {
+									$('#datatables-dashboard-products').DataTable({
+										pageLength: 5,
+										lengthChange: false,
+										bFilter: false,
+										autoWidth: false
+									});
+								});
+							</script>
+						</div>
+						
+						
+						<div class="col-12 col-lg-6 col-xl-8 d-flex">
+							<div class="card flex-fill">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Employe Details</h5>
+								</div>
+								<table id="datatables-dashboard-products" class="table table-striped my-0">
+									<thead>
+										<tr>
+											<th>EmpId</th>
+											<th class="d-none d-xl-table-cell">Name</th>
+											<th class="d-none d-xl-table-cell">Mobile</th>
+											<th class="d-none d-xl-table-cell">Salery</th>
+											<th>Advance</th>
+										</tr>
+									</thead>
+									<tbody id="emp_det">
+										
+									</tbody>
+								</table>
+							</div>
+							<script>
+								document.addEventListener("DOMContentLoaded", function(event) {
+									$('#datatables-dashboard-products').DataTable({
+										pageLength: 4,
+										lengthChange: false,
+										bFilter: false,
+										autoWidth: false
+									});
+								});
+							</script>
+						</div>
+
+
+
+
+
+
+
+
+$(document).ready(function () 
+{
+	
+document.getElementById("remove").disabled = true;
+document.getElementById("empid_add").disabled = true;
+document.getElementById("days_add").disabled = true;
+document.getElementById("add").disabled = true;
+document.getElementById("clear").disabled = true;
+$("table").hide(0);	
+var date=new Date();
+var months=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+var today=months[date.getMonth()]+""+date.getFullYear()+""+date.getDate();
+	
+  $("#set").on("click", function(){ 
+    event.preventDefault();
+    emp_sal_lod();
+    });
+
+function emp_sal_lod()
+{
+document.getElementById("daterange").disabled = true;
+document.getElementById("set").disabled = true;
+document.getElementById("remove").disabled = true;
+
+$.ajax({
+type : "POST",
+url : "php/emp.php",
+data :  {today:today},
+cache : false,
+success:function(response) 
+{
+	
+  if(response==0)
+  {
+    $('#view_pay').html("<big>Problem During Creating Payslip</big>"); 
+  }
+else
+  {
+	document.getElementById("empid_add").disabled = false;
+	document.getElementById("days_add").disabled = false;
+    document.getElementById("add").disabled = false;
+    document.getElementById("clear").disabled = false;
+	$('#tb_name').html(today);
+	$("table").show(0);
+  }
+}	
+});
+return false;
+}
+	//remove
+	$("#remove").on("click", function(){ 
+    event.preventDefault();
+    remove();
+    });
+function remove()
+{
+
+var opt = $("#remove").val();
+alert(opt);	
+$.ajax({
+type : "POST",
+url : "php/emp.php",
+data :  {today:today,opt:opt},
+cache : false,
+success:function(response) 
+{	
+  if(response==0)
+  {
+    $('#view_pay').html("<big>Problem During Removing Payslip</big>"); 
+  }
+else
+  {
+	$('#view_pay').html(response);
+	  alert(response);
+  }
+}	
+});
+return false;
+}
+	//add
+	$("#add").on("click", function(){ 
+    event.preventDefault();
+    add();
+    });
+function add()
+{
+
+var empid = $("#empid_add").val();
+var days = $("#days_add").val();
+var opt = $("#add").val();
+var today;
+	
+alert(opt);	
+$.ajax({
+type : "POST",
+url : "php/emp.php",
+data :  {empid:empid,days:days,opt:opt,today:today},
+cache : false,
+success:function(response) 
+{	
+  if(response==0)
+  {
+    $('#table_data').html("<big>Problem During Adding Payslip</big>"); 
+  }
+else
+  {
+	$('#table_data').html(response);
+	  alert(response);
+  }
+}	
+});
+return false;
+}
+});
+
+else if(isset($_POST['billid']) && isset($_POST['payed']))
+{
+	  $billid = $_POST['billid'];
+	  $payed = $_POST['payed'];
+      
+      $sql = "UPDATE billing SET payed ='$payed' WHERE billid ='$billid'";
+      $result = mysqli_query($bd,$sql);
+	
+      if(!$result) 
+      {
+        echo "0"; 
+      }
+      else
+	  {	
+		$sql1 = "SELECT roundoff FROM billing WHERE billid ='$billid'";
+      	$result1 = mysqli_query($bd,$sql1);
+	  	if(!$result1) 
+      	{
+         echo (mysqli_error($bd));  
+      	}
+      	while($row = mysqli_fetch_array($result1)) 
+      	{
+      	 $roundoff = $row['roundoff'];
+		 if($roundoff >= $payed)
+		 {
+		   $sql2 = "UPDATE billing SET status = 'Payed' WHERE billid ='$billid'";
+		   $result2 = mysqli_query($bd,$sql2);
+		 }
+      	}
+ 		echo "1";
+	  }
+}
